@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div class="card" style="width: 30rem; margin: 3rem;">
+            <div class="card-body">
+                <h2 class="card-title">登录</h2>
+                <br>
+                <form class="card-text" action="/login" method="post">
+                    <input type="text" class="form-control" placeholder="用户名" name="username"><br>
+                    <input type="password" class="form-control" placeholder="密码" name="password"><br>
+                    {% if msg == 'login success' %}
+                    <div class="alert alert-success" role="alert">
+                        登录成功。
+                        <a class="btn btn-href" href="/services?userid={{ userid }}&userkey={{ userkey }}">点击跳转</a>
+                    </div><br>
+                    {% elif msg == 'login fail' %}
+                    <div class="alert alert-danger" role="alert">
+                        登录失败，请检查用户名及密吗。
+                    </div><br>
+                    {% elif msg == 'logout' %}
+                    <div class="alert alert-danger" role="alert">
+                        登录已失效，请重新登录。
+                    </div><br>
+                    {% endif %}
+                    <button type="submit" class="btn btn-primary">登录</button>
+                </form>
+            </div>
+        </div>
+        <div class="card" style="width: 30rem; margin: 3rem;">
+            <div class="card-body">
+                <h2 class="card-title">注册</h5>
+                    <br>
+                    <form class="card-text" action="/register" method="post">
+                        <input type="text" class="form-control" placeholder="用户名" name="username"><br>
+                        <input type="text" class="form-control" placeholder="昵称" name="nickname"><br>
+                        <input type="password" class="form-control" placeholder="密码" name="password"><br>
+                        {% if msg == 'register success' %}
+                        <div class="alert alert-success" role="alert">
+                            注册成功，请登录。
+                        </div><br>
+                        {% elif msg == 'register fail' %}
+                        <div class="alert alert-danger" role="alert">
+                            注册失败，用户名已被使用。
+                        </div><br>
+                        {% endif %}
+                        <button type="submit" class="btn btn-primary">注册</button>
+                    </form>
+            </div>
+        </div>
+    </body>
+</html>

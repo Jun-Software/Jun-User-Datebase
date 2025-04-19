@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <div class="card" style="width: 30rem; margin: 1rem;">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ nicknames[userid] }}，欢迎您！</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 30rem; margin: 1rem;">
+                    <div class="card-body">
+                        <h2 class="card-title">业务选择</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card" style="width: 30rem; margin: 1rem;">
+                    <div class="card-body">
+                        <h2 class="card-title">更改密码</h2>
+                        <br>
+                        <form class="card-text" enctype="application/x-www-form-urlencoded" action="/change_password" method="post">
+                            <input type="password" class="form-control" placeholder="旧密码" name="old_password"><br>
+                            <input type="password" class="form-control" placeholder="新密码" name="new_password"><br>
+                            <input type="password" class="form-control" placeholder="确认新密码" name="renew_password"><br>
+                            <input type="password" value="{{ userid }}" name="userid" readonly style="width: 0; height: 0; border: 0;">
+                            <input type="password" value="{{ userkey }}" name="userkey" readonly style="width: 0; height: 0; border: 0;">
+                            {% if msg == 'change password success' %}
+                            <div class="alert alert-success" role="alert">
+                                更改密码成功。
+                                <a class="btn btn-link" href="/">点击跳转</a>
+                            </div><br>
+                            {% elif msg == 'change password fail' %}
+                            <div class="alert alert-danger" role="alert">
+                                更改密码失败，旧密码错误，或者两次输入的新密码不一致。
+                            </div><br>
+                            {% endif %}
+                            <button type="submit" class="btn btn-primary">更改密码</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 30rem; margin: 1rem;">
+                    <div class="card-body">
+                        <h2 class="card-title">更改昵称</h2>
+                        <br>
+                        <form class="card-text" enctype="application/x-www-form-urlencoded" action="/change_nickname" method="post">
+                            <input type="name" class="form-control" placeholder="新昵称" name="new_nickname"><br>
+                            <input type="password" value="{{ userid }}" name="userid" readonly style="width: 0; height: 0; border: 0;">
+                            <input type="password" value="{{ userkey }}" name="userkey" readonly style="width: 0; height: 0; border: 0;">
+                            {% if msg == 'change nickname success' %}
+                            <div class="alert alert-success" role="alert">
+                                更改昵称成功。
+                            </div><br>
+                            {% elif msg == 'change nickname fail' %}
+                            <div class="alert alert-danger" role="alert">
+                                更改昵称失败，请重试。
+                            </div><br>
+                            {% endif %}
+                            <button type="submit" class="btn btn-primary">更改昵称</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
